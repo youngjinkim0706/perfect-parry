@@ -32,10 +32,24 @@ body {
     text-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
 }
 
-/* 모바일 터치 방지 */
+/* 모바일 터치 최적화 */
 #game-container canvas {
     touch-action: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+/* 모바일 전체 화면 */
+body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+}
+
+/* 터치 피드백 제거 */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
 }

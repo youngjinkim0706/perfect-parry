@@ -137,11 +137,18 @@ class MainScene extends Phaser.Scene {
             fontStyle: 'bold'
         }).setOrigin(0.5);
         
-        // 터치 이벤트
+        // 터치 이벤트 (모바일 + 마우스)
         this.input.on('pointerdown', this.handleTap, this);
+        this.input.on('touchstart', this.handleTap, this);
         
         // 키보드 이벤트 (스페이스바)
         this.input.keyboard.on('keydown-SPACE', this.handleTap, this);
+        this.input.keyboard.on('keydown-ENTER', this.handleTap, this);
+        
+        // 터치 영역 활성화
+        this.touchZone.setInteractive();
+        this.touchZone.on('pointerdown', this.handleTap, this);
+        this.touchZone.on('touchstart', this.handleTap, this);
         
         this.isPlaying = false;
         this.gameOver = false;
@@ -511,6 +518,16 @@ const config = {
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH
+    },
+    physics: {
+        default: 'arcade',
+        arcade: { debug: false }
+    },
+    input: {
+        activePointers: 1,
+        touch: {
+            preventDefaults: true
+        }
     },
     scene: MainScene
 };
