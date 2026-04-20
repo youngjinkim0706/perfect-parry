@@ -471,16 +471,14 @@ class MainScene extends Phaser.Scene {
                 const y = 200 + progress * 250; // 200 ~ 450
                 
                 // 기존 화살표 없으면 생성
-                if (!this.arrowContainer.getChildren().find(c => c.data === index)) {
+                const existingArrow = this.arrowContainer.getChildren().find(c => c.data === index);
+                if (!existingArrow) {
                     const arrow = this.add.image(400, y, 'arrow');
                     arrow.data = index;
                     this.arrowContainer.add(arrow);
-                }
-                
-                // 기존 화살표 위치 업데이트
-                const arrow = this.arrowContainer.getChildren().find(c => c.data === index);
-                if (arrow) {
-                    arrow.y = y;
+                } else {
+                    // 기존 화살표 위치 업데이트
+                    existingArrow.y = y;
                 }
             }
         });
