@@ -141,6 +141,8 @@ class MainScene extends Phaser.Scene {
     
     handleTap() {
         if (this.gameOver) {
+            // 모든 변수 초기화 후 리스타트
+            this.resetGame();
             this.scene.restart();
             return;
         }
@@ -151,6 +153,19 @@ class MainScene extends Phaser.Scene {
         }
         
         this.checkParry();
+    }
+    
+    resetGame() {
+        // 모든 변수 초기화
+        this.combo = 0;
+        this.score = 0;
+        this.playerHP = 100;
+        this.bossHP = 100;
+        this.isPlaying = false;
+        this.gameOver = false;
+        this.attackTimes = [];
+        this.hitAttacks = new Set();
+        this.arrows = [];
     }
     
     startGame() {
